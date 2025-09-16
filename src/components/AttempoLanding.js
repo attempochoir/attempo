@@ -63,84 +63,76 @@ export default function AttempoLanding() {
         </div>
       </section>
 
-      {/* QUIÉNES SOMOS */}
-      <section id="quienes-somos" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Quiénes somos</h2>
-          <p className="mt-4 text-slate-600 max-w-prose">
-            Attempo Choir es un grupo vocal versátil en Madrid compuesto por cinco cantantes y un
-            pianista acompañante en directo. Experiencia en gospel, soul, musicales y pop.
-          </p>
-          <div className="mt-8">
-            <img
-              src="/attempo-grupo.jpg"
-              alt="Attempo Choir. Coro versátil en Madrid"
-              className="shadow-lg w-full max-w-4xl mx-auto"
-            />
-          </div>
+      <ul className="mt-8 grid sm:grid-cols-2 lg:grid-cols-6 gap-6 text-center">
+  {[
+    { name: "Lola Morales", rol: "Alto", foto: "/lola-morales.jpg", bio: "Timbre cálido y profundo que sostiene las armonías." },
+    { name: "Nat Sáez", rol: "Soprano", foto: "/nat-saez.jpg", bio: "Voz brillante y expresiva, aporta el color melódico al grupo." },
+    { name: "César Leal", rol: "Bajo", foto: "/cesar-leal.jpg", bio: "Base grave que aporta cuerpo y equilibrio al conjunto." },
+    { name: "Daniel Díaz", rol: "Tenor", foto: "/dani-diaz.jpg", bio: "Voz clara y potente, con gran expresividad escénica." },
+    { name: "Miguel Pérez", rol: "Tenor", foto: "/miguel-perez.jpg", bio: "Timbre versátil que complementa y refuerza las armonías." },
+    { name: "Carlos Hernández", rol: "Pianista", bio: "Acompañante al piano, motor musical que da unidad al grupo." },
+  ].map((m, i) => (
+    <li
+      key={i}
+      className="p-6 rounded-xl bg-slate-50 shadow hover:shadow-md transition flex flex-col items-center"
+    >
+      {m.foto ? (
+        <img
+          src={m.foto}
+          alt={m.name}
+          className="w-32 h-32 object-cover rounded-full shadow mb-4"
+        />
+      ) : (
+        <div className="w-32 h-32 rounded-full bg-slate-200 mb-4" />
+      )}
+      <div className="font-semibold text-lg">{m.name}</div>
+      <div className="text-slate-600">{m.rol}</div>
+      <p className="mt-2 text-sm text-slate-500">{m.bio}</p>
+    </li>
+  ))}
+</ul>
 
-          <ul className="mt-8 grid sm:grid-cols-2 lg:grid-cols-6 gap-6 text-center">
-            {[
-              { name: "Lola Morales", rol: "Alto", foto: "/lola-morales.jpg" },
-              { name: "Nat Sáez", rol: "Soprano", foto: "/nat-saez.jpg" },
-              { name: "César Leal", rol: "Bajo", foto: "/cesar-leal.jpg" },
-              { name: "Daniel Díaz", rol: "Tenor", foto: "/dani-diaz.jpg" },
-              { name: "Miguel Pérez", rol: "Tenor", foto: "/miguel-perez.jpg" },
-              { name: "Carlos Hernández", rol: "Pianista" },
-            ].map((m, i) => (
-              <li
-                key={i}
-                className="p-6 rounded-xl bg-slate-50 shadow hover:shadow-md transition flex flex-col items-center"
-              >
-                {m.foto ? (
-                  <img
-                    src={m.foto}
-                    alt={m.name}
-                    className="w-32 h-32 object-cover rounded-full shadow mb-4"
-                  />
-                ) : (
-                  <div className="w-32 h-32 rounded-full bg-slate-200 mb-4" />
-                )}
-                <div className="font-semibold text-lg">{m.name}</div>
-                <div className="text-slate-600">{m.rol}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
-      {/* SERVICIOS */}
-      <section id="servicios" className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Servicios</h2>
-          <p className="mt-3 text-slate-600 max-w-prose">
-            Grupo vocal con cinco voces y <strong>piano en directo</strong>. Repertorio versátil para
-            bodas, eventos corporativos y conciertos.
-          </p>
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-50 shadow">
-              <h3 className="font-semibold text-lg">Bodas y ceremonias con voces y piano en directo</h3>
-              <p className="mt-2 text-slate-600">
-                Desde piezas emotivas hasta adaptaciones pop y musicales. Ideal para ceremonia y
-                cóctel.
-              </p>
-            </div>
-            <div className="p-6 rounded-2xl bg-slate-50 shadow">
-              <h3 className="font-semibold text-lg">Eventos corporativos y galas</h3>
-              <p className="mt-2 text-slate-600">
-                Cinco voces y piano en directo para aportar distinción y energía con un sonido
-                elegante.
-              </p>
-            </div>
-            <div className="p-6 rounded-2xl bg-slate-50 shadow">
-              <h3 className="font-semibold text-lg">Conciertos y festivales</h3>
-              <p className="mt-2 text-slate-600">
-                Propuesta escénica con voces + piano, fusionando gospel, soul, pop y musicales.
-              </p>
-            </div>
-          </div>
+<section id="servicios" className="py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Servicios</h2>
+    <div className="grid md:grid-cols-3 gap-6">
+      
+      {/* Bodas */}
+      <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
+        <img src="/servicio-bodas.jpg" alt="Bodas y ceremonias" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+        <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
+          <h3 className="text-2xl font-semibold">Bodas y ceremonias</h3>
+          <p className="mt-2 text-sm md:text-base">Música emotiva con voces y piano en directo. Ideal para ceremonia y cóctel.</p>
         </div>
-      </section>
+      </div>
+
+      {/* Eventos */}
+      <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
+        <img src="/servicio-eventos.jpg" alt="Eventos corporativos" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+        <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
+          <h3 className="text-2xl font-semibold">Eventos corporativos</h3>
+          <p className="mt-2 text-sm md:text-base">Cinco voces y piano en directo para aportar elegancia y energía en galas y eventos.</p>
+        </div>
+      </div>
+
+      {/* Conciertos */}
+      <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
+        <img src="/servicio-conciertos.jpg" alt="Conciertos y festivales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+        <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
+          <h3 className="text-2xl font-semibold">Conciertos y festivales</h3>
+          <p className="mt-2 text-sm md:text-base">Escénica impactante con gospel, soul, pop y musicales con piano en directo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
       {/* CONTACTO */}
       <section id="contacto" className="py-20">
