@@ -47,7 +47,7 @@ export default function AttempoLanding() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex flex-col items-center">
           <h1 className="mt-8 text-slate-100 text-4xl md:text-4xl font-bold tracking-tight max-w-3xl">
-            Attempo Choir. Grupo vocal versátil con piano en directo.[work]
+            Attempo Choir. Grupo vocal versátil con piano en directo.
           </h1>
           <p className="mt-4 text-slate-200 text-lg md:text-xl font-light max-w-2xl">
             Música para bodas, eventos corporativos y conciertos en toda España.
