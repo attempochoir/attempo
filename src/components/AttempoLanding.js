@@ -22,16 +22,11 @@ export default function AttempoLanding() {
             <span className="font-semibold tracking-tight text-lg">Attempo Choir</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#quienes-somos" className="hover:opacity-70">
-              Quiénes somos
-            </a>
-            <a href="#servicios" className="hover:opacity-70">
-              Servicios
-            </a>
-            <a href="#contacto" className="hover:opacity-70">
-              Contacto
-            </a>
-          </nav>
+  <a href="/quienes-somos" className="hover:opacity-70">Quiénes somos</a>
+  <a href="#servicios" className="hover:opacity-70">Servicios</a>
+  <a href="#contacto" className="hover:opacity-70">Contacto</a>
+</nav>
+
           <a
             className="hidden md:inline-flex"
             href="https://wa.me/34660550452"
