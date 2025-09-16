@@ -134,7 +134,7 @@ export default function AttempoLanding() {
   videos={[
     { id: "vykaoUixr14", title: "Attempo Choir - For Good (Wicked)" },
     { id: "JyUGYOlUGC0", title: "Attempo Choir - What a Wonderful World (Short)" },
-    { id: "LEjvzQiMpA0", title: "Attempo Choir - For Good 2 voces (Wicked Broadway)"}
+    { id: "LEjvzQiMpA0", title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
     // puedes seguir añadiendo { id, title } aquí
   ]}
   heading="Vídeos"
