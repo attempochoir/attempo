@@ -28,13 +28,13 @@ export default function QuienesSomos() {
             name: "Lola Morales",
             rol: "Alto",
             foto: "/lola-morales.jpg",
-            bio: "Timbre cálido que sostiene las armonías. Su trayectoria en gospel y soul la ha llevado a formar parte de Spirit to All, Touched Vocals y All4Gospel."
+            bio: "Timbre cálido que sostiene las armonías. Su trayectoria en gospel y soul la ha llevado a formar parte de Spirit to All, Touched Vocals, Laraland y All4Gospel."
           },
          {
             name: "Nat Sáez",
             rol: "Soprano",
             foto: "/nat-saez.jpg",
-            bio: "Voz brillante y expresiva, aporta el color melódico al grupo. Con experiencia en gospel, pop y musicales, ha formado parte de Spirit to All y Touched Vocals, y dio sus primeros pasos en All4Gospel."
+            bio: "Voz brillante y expresiva, aporta el color melódico al grupo. Con experiencia en gospel, pop y musicales, forma parte de Spirit to All y Touched Vocals, y dio sus primeros pasos en All4Gospel."
           },
           {
             name: "César Leal",
@@ -52,13 +52,13 @@ export default function QuienesSomos() {
             name: "Miguel Pérez",
             rol: "Tenor",
             foto: "/miguel-perez.jpg",
-            bio: "Versátil en soul y musicales, aporta frescura y fuerza al conjunto. Integra All4Gospel y colabora en diferentes compañías teatrales."
+            bio: "Versátil en soul y musicales, aporta frescura y fuerza al conjunto. Miembro de All4Gospel y colabora en diferentes compañías teatrales."
           },
           {
             name: "Carlos Hernández",
             rol: "Pianista",
             foto: "/carlos-hernandez.jpg",
-            bio: "Acompañante al piano y motor armónico de Attempo. Ha colaborado en proyectos como Laraland, aportando elegancia y versatilidad."
+            bio: "Acompañante al piano y motor armónico de Attempo. Pianista en Laraland, donde aporta elegancia y versatilidad."
           }
         ].map((m, i) => (
           <div key={i} className="flex flex-col md:flex-row gap-6 items-center">
