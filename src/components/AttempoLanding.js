@@ -127,6 +127,32 @@ export default function AttempoLanding() {
   </div>
 </section>
 
+{/* VÍDEOS */}
+<section id="videos" className="py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Vídeos</h2>
+    <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+      Disfruta de algunos de nuestros ensayos y actuaciones recientes.
+    </p>
+
+    <div className="mt-10 grid md:grid-cols-2 gap-6">
+      <YouTubeEmbed id="vykaoUixr14" title="Attempo Choir - For Good (Wicked)" />
+      <YouTubeEmbed id="JyUGYOlUGC0" title="Attempo Choir - What a Wonderful World" />
+    </div>
+
+    <div className="mt-10">
+      <a
+        href="https://www.youtube.com/@AttempoChoir"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-block bg-[#6E3AFF] text-white font-semibold py-3 px-6 rounded-xl shadow hover:bg-[#5b2ecc] transition"
+      >
+        Ver más en nuestro canal de YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
 
 
       {/* CONTACTO */}
