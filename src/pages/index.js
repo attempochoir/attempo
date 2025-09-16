@@ -46,8 +46,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
+        <title>Attempo Choir. Coro para bodas, eventos y conciertos en Madrid</title>
+        <meta name="description" content="Attempo Choir es un grupo vocal versátil en Madrid con piano en directo. Música elegante y emotiva para bodas, ceremonias, eventos corporativos y conciertos en toda España." />
         <meta property="og:site_name" content="Attempo Choir" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
@@ -59,7 +59,7 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
-        <meta name="theme-color" content="#6E3AFF" />
+        <meta name="theme-color" content="#855ef0ff" />
       </Head>
 
       <AttempoLanding />
