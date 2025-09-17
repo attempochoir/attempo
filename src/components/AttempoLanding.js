@@ -3,16 +3,36 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
 import YouTubePlaylist from "@/components/YouTubePlaylist";
-
-
+import emailjs from "emailjs-com";
 
 export default function AttempoLanding() {
   const [sent, setSent] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
+
+    // Lee claves desde variables de entorno (Next.js: deben empezar por NEXT_PUBLIC_)
+    const svc   = process.env.NEXT_PUBLIC_EMAILJS_SERVICE;
+    const tAuto = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_AUTOREPLY;
+    const tInt  = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_INTERNAL;
+    const pub   = process.env.NEXT_PUBLIC_EMAILJS_KEY;
+
+    if (!svc || !tAuto || !tInt || !pub) {
+      console.error("Faltan variables de entorno de EmailJS");
+      alert("Error de configuración del formulario. Inténtalo más tarde.");
+      return;
+    }
+
+    Promise.all([
+      emailjs.sendForm(svc, tAuto, e.target, pub), // Auto-reply al cliente
+      emailjs.sendForm(svc, tInt,  e.target, pub), // Aviso interno Attempo
+    ])
+      .then(() => setSent(true))
+      .catch((err) => {
+        console.error(err);
+        alert("Hubo un problema al enviar el mensaje. Inténtalo de nuevo.");
+      });
   };
 
   return (
@@ -26,10 +46,10 @@ export default function AttempoLanding() {
             <span className="font-semibold tracking-tight text-lg">Attempo Choir</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
-  <a href="/quienes-somos" className="hover:opacity-70">Quiénes somos</a>
-  <a href="#servicios" className="hover:opacity-70">Servicios</a>
-  <a href="#contacto" className="hover:opacity-70">Contacto</a>
-</nav>
+            <a href="/quienes-somos" className="hover:opacity-70">Quiénes somos</a>
+            <a href="#servicios" className="hover:opacity-70">Servicios</a>
+            <a href="#contacto" className="hover:opacity-70">Contacto</a>
+          </nav>
 
           <a
             className="hidden md:inline-flex"
@@ -62,83 +82,83 @@ export default function AttempoLanding() {
         </div>
       </section>
 
+      {/* Equipo */}
       <ul className="mt-8 grid sm:grid-cols-2 lg:grid-cols-6 gap-6 text-center">
-  {[
-    { name: "Lola Morales", rol: "Alto", foto: "/lola-morales.jpg", bio: "Timbre cálido y profundo que sostiene las armonías." },
-    { name: "Nat Sáez", rol: "Soprano", foto: "/nat-saez.jpg", bio: "Voz brillante y expresiva, aporta el color melódico al grupo." },
-    { name: "César Leal", rol: "Bajo", foto: "/cesar-leal.jpg", bio: "Base grave que aporta cuerpo y equilibrio al conjunto." },
-    { name: "Daniel Díaz", rol: "Tenor", foto: "/dani-diaz.jpg", bio: "Voz clara y potente, con gran expresividad escénica." },
-    { name: "Miguel Pérez", rol: "Tenor", foto: "/miguel-perez.jpg", bio: "Timbre versátil que complementa y refuerza las armonías." },
-    { name: "Carlos Hernández", rol: "Pianista", bio: "Acompañante al piano, motor musical que da unidad al grupo." },
-  ].map((m, i) => (
-    <li
-      key={i}
-      className="p-6 rounded-xl bg-slate-50 shadow hover:shadow-md transition flex flex-col items-center"
-    >
-      {m.foto ? (
-        <img
-          src={m.foto}
-          alt={m.name}
-          className="w-32 h-32 object-cover rounded-full shadow mb-4"
-        />
-      ) : (
-        <div className="w-32 h-32 rounded-full bg-slate-200 mb-4" />
-      )}
-      <div className="font-semibold text-lg">{m.name}</div>
-      <div className="text-slate-600">{m.rol}</div>
-      <p className="mt-2 text-sm text-slate-500">{m.bio}</p>
-    </li>
-  ))}
-</ul>
+        {[
+          { name: "Lola Morales", rol: "Alto",  foto: "/lola-morales.jpg", bio: "Timbre cálido y profundo que sostiene las armonías." },
+          { name: "Nat Sáez",     rol: "Soprano", foto: "/nat-saez.jpg",   bio: "Voz brillante y expresiva, aporta el color melódico al grupo." },
+          { name: "César Leal",   rol: "Bajo",  foto: "/cesar-leal.jpg",   bio: "Base grave que aporta cuerpo y equilibrio al conjunto." },
+          { name: "Daniel Díaz",  rol: "Tenor", foto: "/dani-diaz.jpg",    bio: "Voz clara y potente, con gran expresividad escénica." },
+          { name: "Miguel Pérez", rol: "Tenor", foto: "/miguel-perez.jpg", bio: "Timbre versátil que complementa y refuerza las armonías." },
+          { name: "Carlos Hernández", rol: "Pianista", bio: "Acompañante al piano, motor musical que da unidad al grupo." },
+        ].map((m, i) => (
+          <li
+            key={i}
+            className="p-6 rounded-xl bg-slate-50 shadow hover:shadow-md transition flex flex-col items-center"
+          >
+            {m.foto ? (
+              <img
+                src={m.foto}
+                alt={m.name}
+                className="w-32 h-32 object-cover rounded-full shadow mb-4"
+              />
+            ) : (
+              <div className="w-32 h-32 rounded-full bg-slate-200 mb-4" />
+            )}
+            <div className="font-semibold text-lg">{m.name}</div>
+            <div className="text-slate-600">{m.rol}</div>
+            <p className="mt-2 text-sm text-slate-500">{m.bio}</p>
+          </li>
+        ))}
+      </ul>
 
-<section id="servicios" className="py-20 bg-white">
-  <div className="max-w-7xl mx-auto px-6 text-center">
-    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Servicios</h2>
-    <div className="grid md:grid-cols-3 gap-6">
-      
-      {/* Bodas */}
-      <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
-        <img src="/servicio-bodas.jpg" alt="Bodas y ceremonias" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-        <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
-          <h3 className="text-2xl font-semibold">Bodas y ceremonias</h3>
-          <p className="mt-2 text-sm md:text-base">Música emotiva con voces y piano en directo. Ideal para ceremonia y cóctel.</p>
+      {/* Servicios */}
+      <section id="servicios" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Servicios</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Bodas */}
+            <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
+              <img src="/servicio-bodas.jpg" alt="Bodas y ceremonias" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg[#6E3AFF]/50 transition-colors"></div>
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
+                <h3 className="text-2xl font-semibold">Bodas y ceremonias</h3>
+                <p className="mt-2 text-sm md:text-base">Música emotiva con voces y piano en directo. Ideal para ceremonia y cóctel.</p>
+              </div>
+            </div>
+
+            {/* Eventos */}
+            <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
+              <img src="/servicio-eventos.jpg" alt="Eventos corporativos" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg[#6E3AFF]/50 transition-colors"></div>
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
+                <h3 className="text-2xl font-semibold">Eventos corporativos</h3>
+                <p className="mt-2 text-sm md:text-base">Cinco voces y piano en directo para aportar elegancia y energía en galas y eventos.</p>
+              </div>
+            </div>
+
+            {/* Conciertos */}
+            <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
+              <img src="/servicio-conciertos.jpg" alt="Conciertos y festivales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg[#6E3AFF]/50 transition-colors"></div>
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
+                <h3 className="text-2xl font-semibold">Conciertos y festivales</h3>
+                <p className="mt-2 text-sm md:text-base">Escénica impactante con gospel, soul, pop y musicales con piano en directo.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Eventos */}
-      <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
-        <img src="/servicio-eventos.jpg" alt="Eventos corporativos" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-        <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
-          <h3 className="text-2xl font-semibold">Eventos corporativos</h3>
-          <p className="mt-2 text-sm md:text-base">Cinco voces y piano en directo para aportar elegancia y energía en galas y eventos.</p>
-        </div>
-      </div>
-
-      {/* Conciertos */}
-      <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
-        <img src="/servicio-conciertos.jpg" alt="Conciertos y festivales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-        <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
-          <h3 className="text-2xl font-semibold">Conciertos y festivales</h3>
-          <p className="mt-2 text-sm md:text-base">Escénica impactante con gospel, soul, pop y musicales con piano en directo.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<YouTubePlaylist
-  videos={[
-    { id: "vykaoUixr14", title: "Attempo Choir - For Good (Wicked)" },
-    { id: "JyUGYOlUGC0", title: "Attempo Choir - What a Wonderful World (Short)" },
-    { id: "LEjvzQiMpA0", title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
-    // puedes seguir añadiendo { id, title } aquí
-  ]}
-  heading="Vídeos"
-/>
+      {/* Playlist YouTube */}
+      <YouTubePlaylist
+        videos={[
+          { id: "vykaoUixr14",  title: "Attempo Choir - For Good (Wicked)" },
+          { id: "JyUGYOlUGC0",  title: "Attempo Choir - What a Wonderful World (Short)" },
+          { id: "LEjvzQiMpA0",  title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
+        ]}
+        heading="Vídeos"
+      />
 
       {/* CONTACTO */}
       <section id="contacto" className="py-20">
@@ -150,7 +170,7 @@ export default function AttempoLanding() {
               repertorio a medida).
             </p>
             <ul className="mt-6 space-y-2 text-sm text-slate-700">
-              <li>WhatsApp: +34 645 693 821</li>
+              <li>WhatsApp: +34 660 550 452</li>
               <li>Email: attempochoir@gmail.com</li>
               <li>Base en Madrid · Actuaciones en toda España</li>
             </ul>
@@ -166,15 +186,19 @@ export default function AttempoLanding() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input required placeholder="Nombre" />
-                    <Input required type="email" placeholder="Email" />
+                    <Input required name="user_name" placeholder="Nombre" />
+                    <Input required type="email" name="user_email" placeholder="Email" />
                   </div>
-                  <Input placeholder="Teléfono" />
+
+                  <Input name="user_phone" placeholder="Teléfono" />
+
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Fecha del evento" />
-                    <Input placeholder="Ciudad / lugar" />
+                    <Input name="user_date" placeholder="Fecha del evento" />
+                    <Input name="user_city" placeholder="Ciudad / lugar" />
                   </div>
-                  <Textarea placeholder="Cuéntanos tu evento" rows={5} />
+
+                  <Textarea name="message" placeholder="Cuéntanos tu evento" rows={5} />
+
                   <Button type="submit" className="w-full rounded-2xl">
                     Solicitar propuesta
                   </Button>
@@ -259,7 +283,7 @@ function JsonLd() {
         "@type": "ContactPoint",
         contactType: "booking",
         email: "attempochoir@gmail.com",
-        telephone: "+34 645 693 821",
+        telephone: "+34 660 550 452",
         areaServed: "ES",
       },
     ],
