@@ -62,6 +62,18 @@ export default function AttempoLanding() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <HeadTags />
+      import "@/styles/globals.css";
+import Preloader from "@/components/Preloader";
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Preloader />
+      <Component {...pageProps} />
+    </>
+  );
+}
+
 
       {/* HEADER */}
       <header className="sticky top-0 z-40 backdrop-blur bg-white/80 border-b">
