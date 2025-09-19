@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 
-// Carga la playlist de YouTube solo en cliente (evita SSR en móvil)
+// Solo cliente
 const YouTubePlaylist = dynamic(() => import("@/components/YouTubePlaylist"), { ssr: false });
 
 export default function AttempoLanding() {
@@ -15,13 +15,11 @@ export default function AttempoLanding() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 1) Recogemos los campos del form
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    // 2) Intentamos ejecutar reCAPTCHA v3 (fallback si no carga)
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    let token = "not-verified"; // fallback por defecto
+    let token = "not-verified";
 
     if (siteKey && typeof window !== "undefined" && window.grecaptcha) {
       try {
@@ -33,10 +31,8 @@ export default function AttempoLanding() {
       console.warn("reCAPTCHA no cargado (posible Adblock). Se envía sin validación.");
     }
 
-    // 3) Añadimos token (real o fallback)
     data.recaptchaToken = token;
 
-    // 4) Enviamos al backend
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -62,18 +58,6 @@ export default function AttempoLanding() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <HeadTags />
-      import "@/styles/globals.css";
-import Preloader from "@/components/Preloader";
-
-export default function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Preloader />
-      <Component {...pageProps} />
-    </>
-  );
-}
-
 
       {/* HEADER */}
       <header className="sticky top-0 z-40 backdrop-blur bg-white/80 border-b">
@@ -87,18 +71,13 @@ export default function MyApp({ Component, pageProps }) {
             <a href="#servicios" className="hover:opacity-70">Servicios</a>
             <a href="#contacto" className="hover:opacity-70">Contacto</a>
           </nav>
-          <a
-            className="hidden md:inline-flex"
-            href="https://wa.me/34660550452"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="hidden md:inline-flex" href="https://wa.me/34660550452" target="_blank" rel="noreferrer">
             <Button className="rounded-2xl">Contacta con nosotros</Button>
           </a>
         </div>
       </header>
 
-      {/* HÉROE (altura segura en móvil) */}
+      {/* HÉROE */}
       <section
         className="relative min-h-[85dvh] md:min-h-screen w-full flex flex-col items-center justify-center bg-black bg-cover bg-center text-center px-6"
         style={{ backgroundImage: "url('/bg-hero-3.jpg')" }}
@@ -130,17 +109,9 @@ export default function MyApp({ Component, pageProps }) {
               { name: "Miguel Pérez", rol: "Tenor", foto: "/miguel-perez.jpg", bio: "Timbre versátil que complementa y refuerza las armonías." },
               { name: "Carlos Hernández", rol: "Pianista", bio: "Acompañante al piano, motor musical que da unidad al grupo." },
             ].map((m, i) => (
-              <li
-                key={i}
-                className="p-6 rounded-xl bg-slate-50 shadow hover:shadow-md transition flex flex-col items-center"
-              >
+              <li key={i} className="p-6 rounded-xl bg-slate-50 shadow hover:shadow-md transition flex flex-col items-center">
                 {m.foto ? (
-                  <img
-                    src={m.foto}
-                    alt={m.name}
-                    loading="lazy"
-                    className="w-32 h-32 object-cover rounded-full shadow mb-4"
-                  />
+                  <img src={m.foto} alt={m.name} loading="lazy" className="w-32 h-32 object-cover rounded-full shadow mb-4" />
                 ) : (
                   <div className="w-32 h-32 rounded-full bg-slate-200 mb-4" />
                 )}
@@ -158,14 +129,8 @@ export default function MyApp({ Component, pageProps }) {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Servicios</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Bodas */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
-              <img
-                loading="lazy"
-                src="/servicio-bodas.jpg"
-                alt="Bodas y ceremonias"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <img loading="lazy" src="/servicio-bodas.jpg" alt="Bodas y ceremonias" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
                 <h3 className="text-2xl font-semibold">Bodas y ceremonias</h3>
@@ -173,14 +138,8 @@ export default function MyApp({ Component, pageProps }) {
               </div>
             </div>
 
-            {/* Eventos */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
-              <img
-                loading="lazy"
-                src="/servicio-eventos.jpg"
-                alt="Eventos corporativos"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <img loading="lazy" src="/servicio-eventos.jpg" alt="Eventos corporativos" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
                 <h3 className="text-2xl font-semibold">Eventos corporativos</h3>
@@ -188,14 +147,8 @@ export default function MyApp({ Component, pageProps }) {
               </div>
             </div>
 
-            {/* Conciertos */}
             <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
-              <img
-                loading="lazy"
-                src="/servicio-conciertos.jpg"
-                alt="Conciertos y festivales"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <img loading="lazy" src="/servicio-conciertos.jpg" alt="Conciertos y festivales" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
                 <h3 className="text-2xl font-semibold">Conciertos y festivales</h3>
@@ -209,10 +162,10 @@ export default function MyApp({ Component, pageProps }) {
       {/* PLAYLIST YOUTUBE (solo cliente) */}
       <YouTubePlaylist
         videos={[
-          { id: "vykaoUixr14",  title: "Attempo Choir - For Good (Wicked)" },
-          { id: "JyUGYOlUGC0",  title: "Attempo Choir - What a Wonderful World (Short)" },
-          { id: "LEjvzQiMpA0",  title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
-          { id: "lHZxGwcdGdQ",  title: "Attempo Choir - Madre de Hakuna" },
+          { id: "vykaoUixr14", title: "Attempo Choir - For Good (Wicked)" },
+          { id: "JyUGYOlUGC0", title: "Attempo Choir - What a Wonderful World (Short)" },
+          { id: "LEjvzQiMpA0", title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
+          { id: "lHZxGwcdGdQ", title: "Attempo Choir - Madre de Hakuna" },
         ]}
         heading="Vídeos"
       />
@@ -264,7 +217,7 @@ export default function MyApp({ Component, pageProps }) {
 
       <JsonLd />
 
-      {/* Script reCAPTCHA (al final para minimizar bloqueos en móvil) */}
+      {/* reCAPTCHA al final */}
       <Script
         src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
         strategy="afterInteractive"
@@ -274,9 +227,7 @@ export default function MyApp({ Component, pageProps }) {
 }
 
 function Logo() {
-  return (
-    <img src="/logo_attempo_positivo.png" alt="Attempo Choir" className="h-10 md:h-12 w-auto" />
-  );
+  return <img src="/logo_attempo_positivo.png" alt="Attempo Choir" className="h-10 md:h-12 w-auto" />;
 }
 
 function HeadTags() {
