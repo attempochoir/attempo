@@ -180,9 +180,9 @@ export default function AttempoLanding() {
               repertorio a medida).
             </p>
             <ul className="mt-6 space-y-2 text-sm text-slate-700">
-              <li>WhatsApp: +34 660 550 452</li>
+              <li>WhatsApp</li>
               <li>Email: attempochoir@gmail.com</li>
-              <li>Base en Madrid · Actuaciones en toda España</li>
+              <li>Base en Madrid. Actuaciones en toda España</li>
             </ul>
           </div>
 
