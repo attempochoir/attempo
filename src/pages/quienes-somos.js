@@ -1,15 +1,11 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
+import Footer from "@/components/Footer";
 
 export default function QuienesSomos() {
   return (
     <>
-      <Head>
-        <title>Quiénes somos · Attempo Choir</title>
-        <meta
-          name="description"
-          content="Conoce a los integrantes de Attempo Choir: voces versátiles con experiencia en gospel, soul, musicales y pop. Cinco cantantes y un pianista unidos por la emoción en directo."
-        />
-      </Head>
+      <Seo title="Quiénes somos: cinco voces y piano | Attempo Choir" description="Conoce a los cinco cantantes y al pianista de Attempo Choir. Grupo vocal con base en Madrid para bodas, eventos corporativos y conciertos en toda España." path="/quienes-somos" type="AboutPage" />
+      <main>
 
       {/* Hero */}
       <section className="relative h-72 flex items-center justify-center text-center bg-black bg-cover bg-center"
@@ -64,7 +60,7 @@ export default function QuienesSomos() {
           <div key={i} className="flex flex-col md:flex-row gap-6 items-center">
             <img src={m.foto} alt={m.name} className="w-40 h-40 object-cover rounded-full shadow-lg" />
             <div>
-              <h3 className="text-2xl font-semibold">{m.name}</h3>
+              <h2 className="text-2xl font-semibold">{m.name}</h2>
               <p className="text-slate-600 italic">{m.rol}</p>
               <p className="mt-3 text-slate-700">{m.bio}</p>
             </div>
@@ -81,6 +77,8 @@ export default function QuienesSomos() {
           Contacta con nosotros
         </a>
       </section>
+      </main>
+      <Footer />
     </>
   );
 }

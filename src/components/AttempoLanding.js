@@ -3,13 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import dynamic from "next/dynamic";
+import YouTubePlaylist from "@/components/YouTubePlaylist";
+import { faqs } from "@/lib/seo";
 import Script from "next/script";
 
 const DOSSIER_URL = "https://dossier.attempochoir.com";
 
-// Solo cliente
-const YouTubePlaylist = dynamic(() => import("@/components/YouTubePlaylist"), { ssr: false });
 
 export default function AttempoLanding() {
   const [sent, setSent] = useState(false);
@@ -59,18 +58,19 @@ export default function AttempoLanding() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <HeadTags />
 
       {/* HEADER */}
       <header className="sticky top-0 z-40 backdrop-blur bg-white/80 border-b">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap gap-4 items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo />
             <span className="font-semibold tracking-tight text-lg">Attempo Choir</span>
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <nav aria-label="Navegación principal" className="order-last w-full flex flex-wrap justify-center items-center gap-x-5 gap-y-3 text-sm lg:order-none lg:w-auto">
             <a href="/quienes-somos" className="hover:opacity-70">Quiénes somos</a>
-            <a href="#servicios" className="hover:opacity-70">Servicios</a>
+            <a href="/coro-para-eventos" className="hover:opacity-70">Eventos</a>
+            <a href="/coro-para-bodas" className="hover:opacity-70">Bodas</a>
+            <a href="/repertorio" className="hover:opacity-70">Repertorio</a>
             <a href={DOSSIER_URL} target="_blank" rel="noopener noreferrer" className="hover:opacity-70">Dossier</a>
             <a href="#contacto" className="hover:opacity-70">Contacto</a>
           </nav>
@@ -80,6 +80,7 @@ export default function AttempoLanding() {
         </div>
       </header>
 
+      <main>
       {/* HÉROE */}
       <section
         className="relative min-h-[85dvh] md:min-h-screen w-full flex flex-col items-center justify-center bg-black bg-cover bg-center text-center px-6"
@@ -88,10 +89,10 @@ export default function AttempoLanding() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex flex-col items-center">
           <h1 className="mt-8 text-slate-100 text-4xl md:text-4xl font-bold tracking-tight max-w-3xl">
-            Attempo Choir. Grupo vocal versátil con piano en directo.
+            Coro para eventos y bodas en Madrid
           </h1>
           <p className="mt-4 text-slate-200 text-lg md:text-xl font-light max-w-2xl">
-            Música para bodas, eventos corporativos y conciertos en toda España.
+            Attempo Choir: cinco voces y piano en directo. Pop y musicales a cuatro voces para bodas, eventos corporativos y conciertos en toda España.
           </p>
           <a href="#contacto" className="mt-8 inline-block">
             <Button className="rounded-2xl">Solicita presupuesto</Button>
@@ -110,7 +111,9 @@ export default function AttempoLanding() {
       {/* QUIÉNES SOMOS */}
       <section id="quienes-somos" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Quiénes somos</h2>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Attempo Choir: cinco cantantes y un pianista</h2>
+          <p className="mt-5 max-w-3xl text-slate-700 leading-relaxed">Somos un grupo vocal con base en Madrid. Interpretamos versiones de pop y musicales a cuatro voces y piano en directo para bodas, eventos corporativos y conciertos. También contamos con repertorio de soul, gospel y música religiosa, y podemos organizar una formación mayor si el evento lo requiere.</p>
+          <a href="/quienes-somos" className="mt-4 inline-block text-violet-700 underline">Conoce la trayectoria de nuestros músicos</a>
           <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-6 gap-6 text-center">
             {[
               { name: "Lola Morales", rol: "Alto",  foto: "/lola-morales.jpg", bio: "Timbre cálido y profundo que sostiene las armonías." },
@@ -138,14 +141,15 @@ export default function AttempoLanding() {
       {/* SERVICIOS */}
       <section id="servicios" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Servicios</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Música en directo para bodas y eventos</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="relative rounded-2xl overflow-hidden shadow-lg group h-80">
               <img loading="lazy" src="/servicio-bodas.jpg" alt="Bodas y ceremonias" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
-                <h3 className="text-2xl font-semibold">Bodas y ceremonias</h3>
-                <p className="mt-2 text-sm md:text-base">Música emotiva con voces y piano en directo. Ideal para ceremonia y cóctel.</p>
+                <h3 className="text-2xl font-semibold">Coro para bodas y ceremonias</h3>
+                <p className="mt-2 text-sm md:text-base">Música emotiva con voces y piano en directo. Para ceremonias civiles, religiosas y cócteles.</p>
+                <a href="/coro-para-bodas" className="mt-4 underline font-medium">Música para vuestra boda</a>
               </div>
             </div>
 
@@ -153,8 +157,9 @@ export default function AttempoLanding() {
               <img loading="lazy" src="/servicio-eventos.jpg" alt="Eventos corporativos" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
-                <h3 className="text-2xl font-semibold">Eventos corporativos</h3>
-                <p className="mt-2 text-sm md:text-base">Cinco voces y piano en directo para aportar elegancia y energía en galas y eventos.</p>
+                <h3 className="text-2xl font-semibold">Coro para eventos corporativos</h3>
+                <p className="mt-2 text-sm md:text-base">Cinco voces y piano en directo para aportar elegancia y energía en cócteles, galas y encuentros de empresa.</p>
+                <a href="/coro-para-eventos" className="mt-4 underline font-medium">Organiza la música de tu evento</a>
               </div>
             </div>
 
@@ -163,14 +168,22 @@ export default function AttempoLanding() {
               <div className="absolute inset-0 bg-[#6E3AFF]/70 group-hover:bg-[#6E3AFF]/50 transition-colors"></div>
               <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
                 <h3 className="text-2xl font-semibold">Conciertos y festivales</h3>
-                <p className="mt-2 text-sm md:text-base">Escénica impactante con gospel, soul, pop y musicales con piano en directo.</p>
+                <p className="mt-2 text-sm md:text-base">Pop y musicales a cuatro voces y piano, con temas de soul y gospel.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PLAYLIST YOUTUBE (solo cliente) */}
+      <section id="repertorio" className="py-14 bg-violet-50">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold">Pop, musicales y canciones para cada celebración</h2>
+          <p className="mt-5 text-slate-700 leading-relaxed">Desde A Thousand Years y Can’t Help Falling in Love hasta This Is Me, Seasons of Love y Ain’t No Mountain High Enough. Nuestro repertorio incluye pop, soul, musicales, gospel, música religiosa y piezas instrumentales a piano.</p>
+          <a href="/repertorio" className="mt-6 inline-block rounded-2xl bg-[#6E3AFF] text-white px-6 py-3">Explora nuestro repertorio</a>
+        </div>
+      </section>
+
+      {/* PLAYLIST YOUTUBE */}
       <YouTubePlaylist
         videos={[
           { id: "vykaoUixr14", title: "Attempo Choir - For Good (Wicked)" },
@@ -178,21 +191,20 @@ export default function AttempoLanding() {
           { id: "LEjvzQiMpA0", title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
           { id: "lHZxGwcdGdQ", title: "Attempo Choir - Madre de Hakuna" },
         ]}
-        heading="Vídeos"
+        heading="Escucha a Attempo Choir: voces y piano en directo"
       />
 
       {/* CONTACTO */}
       <section id="contacto" className="py-20">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Contacto & contratación</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Contrata a Attempo Choir para tu evento</h2>
             <p className="mt-3 text-slate-600">
-              Cuéntanos tu evento y te proponemos el mejor formato (cinco voces + piano, refuerzos,
-              repertorio a medida).
+              Indícanos la fecha, la ciudad, el lugar y los momentos en los que queréis música. Prepararemos una propuesta sin compromiso según la duración, la formación y las necesidades de la actuación.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-slate-700">
-              <li>WhatsApp</li>
-              <li>Email: attempochoir@gmail.com</li>
+              <li>WhatsApp: <a href="https://wa.me/34660550452" target="_blank" rel="noopener noreferrer" className="underline">+34 660 550 452</a></li>
+              <li>Email: <a href="mailto:attempochoir@gmail.com" className="underline">attempochoir@gmail.com</a></li>
               <li>Base en Madrid. Actuaciones en toda España</li>
             </ul>
             <a
@@ -234,7 +246,15 @@ export default function AttempoLanding() {
         </div>
       </section>
 
-      <JsonLd />
+
+      <section className="py-14 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-2xl md:text-3xl font-bold">Lo que necesitas saber para contratar nuestro coro</h2>
+          <dl className="mt-8 grid md:grid-cols-2 gap-8">{faqs.slice(0, 6).map(({ question, answer }) => <div key={question}><dt className="font-semibold text-lg">{question}</dt><dd className="mt-3 text-slate-700 leading-relaxed">{answer}</dd></div>)}</dl>
+          <a href="/faq" className="mt-8 inline-block text-violet-700 underline">Todas las preguntas sobre contratación</a>
+        </div>
+      </section>
+      </main>
 
       {/* reCAPTCHA al final */}
       <Script
@@ -247,51 +267,4 @@ export default function AttempoLanding() {
 
 function Logo() {
   return <img src="/logo_attempo_positivo.png" alt="Attempo Choir" className="h-10 md:h-12 w-auto" />;
-}
-
-function HeadTags() {
-  const SITE_URL = "https://attempochoir.com";
-  const TITLE = "Attempo Choir · Grupo vocal versátil para bodas, eventos y conciertos";
-  const DESC =
-    "Attempo Choir es un grupo vocal profesional en Madrid. Versatilidad: gospel, soul, musicales y pop con piano en directo para bodas, ceremonias, eventos corporativos y conciertos en toda España.";
-  const IMG = SITE_URL + "/logo_attempo_positivo.png";
-  return (
-    <>
-      <title>{TITLE}</title>
-      <meta name="description" content={DESC} />
-      <link rel="canonical" href={SITE_URL} />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={TITLE} />
-      <meta property="og:description" content={DESC} />
-      <meta property="og:url" content={SITE_URL} />
-      <meta property="og:site_name" content="Attempo Choir" />
-      <meta property="og:image" content={IMG} />
-      <meta property="og:locale" content="es_ES" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={TITLE} />
-      <meta name="twitter:description" content={DESC} />
-      <meta name="twitter:image" content={IMG} />
-      <meta name="twitter:site" content="@attempochoir" />
-    </>
-  );
-}
-
-function JsonLd() {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    name: "Attempo Choir",
-    description:
-      "Attempo Choir es un grupo vocal versátil en Madrid con piano en directo. Música para bodas, eventos corporativos y conciertos. Repertorio: gospel, soul, musicales y pop.",
-    genre: ["Gospel", "Soul", "Musical", "Pop"],
-    areaServed: "ES",
-    email: "attempochoir@gmail.com",
-    telephone: "+34 660 550 452",
-    sameAs: [
-      "https://www.instagram.com/attempochoir/",
-      "https://www.facebook.com/profile.php?id=61574412730911",
-      "https://www.tiktok.com/@attempo.choir",
-    ],
-  };
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }

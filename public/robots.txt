@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://reemplaza-con-tu-dominio.com/sitemap.xml
+
+Sitemap: https://www.attempochoir.com/sitemap.xml

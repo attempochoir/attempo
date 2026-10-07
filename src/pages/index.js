@@ -1,72 +1,13 @@
-import Head from "next/head";
+import Seo from "@/components/Seo";
 import AttempoLanding from "@/components/AttempoLanding";
-import Footer from "../components/Footer"; // ✅ ruta relativa y caso correcto
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  const title = "Attempo Choir — Música que emociona";
-  const description =
-    "Attempo Choir: grupo vocal para bodas y eventos. Armonía, elegancia y emoción en cada actuación.";
-  const siteUrl = "https://attempochoir.com";
-  const ogImage = "/og.jpg";
-  const logoPath = "/logo_attempo_positivo.png";
-
-  const ld = {
-    "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    name: "Attempo Choir",
-    url: siteUrl,
-    logo: logoPath,
-    email: "attempochoir@gmail.com",
-    telephone: "+34 660 550 452",
-    sameAs: [
-      "https://www.instagram.com/attempochoir/",
-      "https://www.facebook.com/profile.php?id=61574412730911",
-      "https://www.tiktok.com/@attempo.choir"
-    ],
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        contactType: "Bookings",
-        email: "attempochoir@gmail.com",
-        telephone: "+34 660 550 452",
-        areaServed: "ES",
-        availableLanguage: ["es", "en"]
-      }
-    ],
-    member: [
-      { "@type": "Person", name: "Lola Morales", jobTitle: "Alto" },
-      { "@type": "Person", name: "César Leal", jobTitle: "Bajo" },
-      { "@type": "Person", name: "Daniel Díaz", jobTitle: "Tenor" },
-      { "@type": "Person", name: "Miguel Pérez", jobTitle: "Tenor" },
-      { "@type": "Person", name: "Natacha Sáez", alternateName: "Nat Sáez", jobTitle: "Soprano" },
-      { "@type": "Person", name: "Carlos Hernández", jobTitle: "Piano" }
-    ]
-  };
-
   return (
     <>
-      <Head>
-        <title>Attempo Choir. Coro para bodas, eventos y conciertos en Madrid</title>
-        <meta name="description" content="Attempo Choir es un grupo vocal versátil en Madrid con piano en directo. Música elegante y emotiva para bodas, ceremonias, eventos corporativos y conciertos en toda España." />
-        <meta property="og:site_name" content="Attempo Choir" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={siteUrl} />
-        <meta property="og:image" content={ogImage} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
-        <meta name="theme-color" content="#855ef0ff" />
-      </Head>
-
+      <Seo title="Coro para eventos y bodas en Madrid | Attempo Choir" description="Cinco voces y piano en directo para eventos corporativos, bodas y conciertos. Pop y musicales a cuatro voces. Base en Madrid; actuaciones en toda España." />
       <AttempoLanding />
       <Footer />
     </>
   );
 }
-
-
-
