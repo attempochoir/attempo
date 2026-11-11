@@ -194,6 +194,36 @@ export default function AttempoLanding() {
         heading="Escucha a Attempo Choir: voces y piano en directo"
       />
 
+      {/* RESEÑAS DE GOOGLE */}
+      <section id="opiniones" aria-labelledby="opiniones-title" className="py-16 md:py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 id="opiniones-title" className="text-3xl md:text-4xl font-bold tracking-tight">
+              Lo que dicen de nosotros
+            </h2>
+            <p className="mt-4 text-slate-600 leading-relaxed">
+              Descubre las experiencias y opiniones compartidas en Google sobre Attempo Choir.
+            </p>
+          </div>
+          <div className="mt-10 min-h-[220px]">
+            <div
+              className="elfsight-app-849f7c7d-e83d-44b9-82f8-a7d1f5c6fd51"
+              data-elfsight-app-lazy=""
+            />
+          </div>
+          <div className="mt-8 text-center">
+            <a
+              href="https://share.google/TcOfgVxfe27yKTbvc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-2xl border border-[#6E3AFF] px-6 py-3 font-medium text-[#6E3AFF] transition hover:bg-violet-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6E3AFF]"
+            >
+              Ver reseñas en Google
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* CONTACTO */}
       <section id="contacto" className="py-20">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-start">
@@ -255,6 +285,12 @@ export default function AttempoLanding() {
         </div>
       </section>
       </main>
+
+      <Script
+        id="elfsight-platform"
+        src="https://elfsightcdn.com/platform.js"
+        strategy="afterInteractive"
+      />
 
       {/* reCAPTCHA al final */}
       <Script
