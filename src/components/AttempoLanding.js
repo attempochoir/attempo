@@ -186,6 +186,12 @@ export default function AttempoLanding() {
       {/* PLAYLIST YOUTUBE */}
       <YouTubePlaylist
         videos={[
+          { id: "DKJLdV6UOlk", title: "Over the Rainbow · Voces y piano en directo" },
+          { id: "9Q7lGXl5_B8", title: "En mi Getsemaní · Música para ceremonias" },
+          { id: "-m9y-MBM7iE", title: "Hallelujah · Leonard Cohen · Fragmento 1" },
+          { id: "LotGnFJwgQ4", title: "Hallelujah · Leonard Cohen · Fragmento 2" },
+          { id: "lSqXH1CpZi0", title: "A Thousand Years · Voces y piano en directo" },
+          { id: "ZRpvZjIA3v8", title: "You Are the Reason · Prueba de sonido" },
           { id: "vykaoUixr14", title: "Attempo Choir - For Good (Wicked)" },
           { id: "JyUGYOlUGC0", title: "Attempo Choir - What a Wonderful World (Short)" },
           { id: "LEjvzQiMpA0", title: "Attempo Choir - For Good ensayo 2 voces (Wicked Broadway)" },
