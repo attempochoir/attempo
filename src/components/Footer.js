@@ -72,6 +72,7 @@ export default function Footer() {
         <a href="/coro-para-eventos" className="hover:text-violet-400 transition-colors">Coro para eventos</a>
         <a href="/coro-para-bodas" className="hover:text-violet-400 transition-colors">Coro para bodas</a>
         <a href="/repertorio" className="hover:text-violet-400 transition-colors">Repertorio</a>
+        <a href="/press-kit" className="hover:text-violet-400 transition-colors">Press Kit</a>
         <a href="/faq" className="hover:text-violet-400 transition-colors">Preguntas frecuentes</a>
         <a href="/privacidad" className="hover:text-violet-400 transition-colors">Privacidad</a>
         <a href="/cookies" className="hover:text-violet-400 transition-colors">Cookies</a>
