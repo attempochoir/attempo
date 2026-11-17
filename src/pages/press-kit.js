@@ -10,6 +10,8 @@ const photos = {
     ["choir-corporativo-horizontal.jpg", "Retrato contemporáneo"],
     ["choir-corporativo-vertical.jpg", "Retrato · vertical"],
     ["choir-escalera.jpg", "Retrato en escalera"],
+    ["IMG_3810.jpg", "Attempo Choir en la iglesia · horizontal"],
+    ["IMG_3815.jpg", "Attempo Choir en la iglesia · vertical"],
   ],
   friends: [
     ["friends-escenario.jpg", "Attempo & Friends · escenario"],
